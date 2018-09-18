@@ -1,0 +1,116 @@
+沈 shenyg@njrst.com.cn
+
+版本控制管理工具
+一、集中式版本控制管理
+    CVS SVN
+二、分布式版本控制管理
+    git 
+
+操作系统：   
+Unix  收费 不开源 
+Linux 维护更新Linux内核代码,BitKeeper
+linux MAC没有分盘，只有根目录
+
+
+Git最初是为了管理Linux内核代码而诞生的
+一.Shell指令
+  Linux中文件夹也叫做目录
+  ① pwd,cd,ls 
+    pwd:print working directory 
+        --打印当前所在的路径
+    ls:list 
+       --显示当前目录中的所有非隐藏文件或目录
+         后缀 / (默认蓝色)：目录
+         黑色：文件
+         后缀 * (默认绿色)：可执行文件(双击可运行)
+         .lnk：快捷方式(超链接)
+      *ls -a: 显示此目录内容，包括隐藏的
+      *ls -lt: 按时间显示以列表形式
+       ls -l:以列表
+       ls -t:按时间
+    cd:change directory  
+       --切换工作目录
+       cd /d/a : 切换到根目录下的d文件夹中的a文件夹(/表示根目录)
+       cd a/aa/aaa 
+       cd .. :切换到上一级
+       cd ~ : ~表示当前用户登录的主目录
+              --切换到主目录
+       /    根目录 
+       ./   当前目录
+       ../  上层目录  
+  ② mkdir 新建文件夹
+      mkdir 文件夹路径
+      mkdir a/aa/aaa      若父级目录不存在会报错
+      mkdir -p a/aa/aaa   先创建父级再子级
+  ③ touch 新建文件
+      touch 文件路径
+      touch t.txt 如果该文件已存在，则不会创建新文件(也不报错),修改该文件的最后访问时间
+      touch a     也可以是文件夹，修改时间
+  ④ rmdir 删除空目录
+      rmdir 文件路径
+      rmdir a/aa/aaa 只删除aaa
+  ⑤ rm 
+      rm ../a  删除上级文件a
+      rm -rf a   删除非空目录
+  ⑥ vi 文本编辑器
+      vi 1.txt 
+        … vi 进入命令行模式 不能输入数据
+        … 输入a/i 进入输入模式 输入数据
+        … 输入完 Esc退出输入 进入命令行
+        … 输入:wq 保存并退出
+        wq : write quit
+        w  : 保存不退出 还处于vi状态
+        q  : 在没有修改的情况下直接退出
+        q! : 强制退出不保存
+      PS:
+        输入数据还可以使用echo指令
+        echo  数据 > 1.txt     覆盖模式
+        echo  数据 >> 1.txt    追加模式
+  ⑦ cat 读取文件的内容 
+    
+二.Git的使用      --所有git命令都以git开头
+  1.配置个人用户信息
+    git config --global user.name "用户名"
+    git config --global user.email "邮箱"
+    --(g全局，global整个电脑都使用)
+  2.初始化本地仓库
+    ① 先进入目标文件夹
+    ② 初始化指令: 
+        git init 
+        此时在本目录会生成一个.git文件夹(.git删除后 本地仓库失效)
+        同时命令行中路径最后出现(master)
+    ③ 查看本地仓库的状态: 
+        git status
+    ④ 提交
+      先提交到暂存区: 
+        git add 文件名
+        git add -A 将工作区所有有修改的内容提交    
+      将暂存区的内容提交到master上: git commit -m "提交信息"
+
+练习:
+1.在桌面右击git bash
+  后续操作全部使用命令运行
+2.切换到D盘目录下，新建文件夹test,且切换进去
+3.在test下新建文件夹a,b/c,e/d/f
+  新建文件1.txt,b/2.txt
+4.切换进入d文件夹，查看当前目录, 删除f文件夹
+5.切换回test下，删除e文件夹
+  *cd /d/test
+  *cd ../..
+6.使用vi 修改1.txt内容，使用echo修改2.txt内容
+7.查看1.txt,2.txt文件的内容
+8.删除a文件夹
+9.初始化test文件夹为本地仓库
+10.查看本地仓库的状态
+11.将本地仓库的内容提交到master上       
+  
+        
+      
+
+
+
+
+
+
+
+

@@ -1,0 +1,96 @@
+一、Git指令
+  1.git仓库的状态与区域
+    3个区域：
+      ① 工作区
+      ② 暂存区
+      ③ 当前HEAD指向的分支
+    4个状态
+      ① unmonified
+        工作区以及暂存中没有任何需要提交的修改，工作区很干净
+      ② untracked
+        仓库中有新建的文件，但是还没有提交过，没有被纳入到git的控制之中
+      ③ modified
+        工作区有文件被修改，但未提交
+      ④ staged
+        工作区的修改以及被提交到了暂存区
+
+  2.撤销修改
+    ① 撤销工作区的修改
+      --文件修改后，没有被执行git add指令 
+      git checkout -- 文件名
+    ② 撤销暂存区的修改
+      --文件已经被修改，并且已经执行过git add,但没有git commit
+      .先撤销暂存操作
+       git reset HEAD 文件名
+      .再撤销工作区的修改(同①)
+    ③ 撤销master的修改(无法撤销，可以通过版本回退的方式)
+      .撤销前先查看提交的id,确定版本
+      .git log
+      .git reset --hard 提交的id
+
+  3.查看提交信息/存盘点
+    ..提交次数少
+      git log  (shift+q退出查看)
+    ..提交版本很多
+      git log --pretty=oneline 
+
+  4.关于存盘点(HEAD)
+    作用: 实现版本的控制
+    git中把每一次的提交都会串成一条时间线，这个时间线就是一条分支。默认只有一条分支master，也称之为主分支。
+    而HEAD指向的就是当前分支
+  
+  5.分支
+    ① 创建分支
+        git branch 分支名
+         将当前所在分支复制
+    ② 查看当前所有分支
+        git branch
+      得到结果：
+        *当前所在分支(绿色)
+         其他分支...
+    ③ 切换分支
+        git checkout 分支名
+         修改后必须提交才能切换分支，在分支上的操作不会影响其他分支的数据
+    ④ 合并分支
+        git merge 分支名
+         将指定名称的内容合并到当前分支
+    ⑤ 删除分支
+        git branch -d 分支名
+         不能删除当前分支
+        git branch -D 分支名
+         强制删除未合并的分支
+
+练习
+1.删除test文件，重新创建
+2.初始化仓库，新建1.txt,将1.txt内容修改为abc,提交
+3.创建分支v1，查看所有分支，切换v1分支
+4.将1.txt内容修改为123，提交
+5.切换到master分支，查看1.txt内容是否发生变化
+6.将v1分支合并到master分支，分别查看master与v1分支中1.txt的内容
+7.创建v2分支，在v2分支中新建文件2.txt，提交
+8.切换到master分支，查看master中是否有2.txt文件
+9.删除v1分支
+
+
+二、GitHub的使用
+    网址：https://github.com
+    远程仓库
+    1.注册登录
+    2.新建远程仓库
+      右上角+ >> new repository >> Repository name 填写 >> create repository
+    3.将本地仓库与远程仓库相关联
+      git remote add origin 远程仓库地址.git 
+      add:表示添加关联
+      origin:表示一个变量名，方便后续操作的使用，指代后面的 ‘远程仓库地址.git’ 的地址
+      *查看是否关联成功
+       git remote 
+    4.将本地仓库的内容推送给远程仓库
+      git push -u origin master >> 输入用户名，密码
+      -u:只在第一次推送的时候添加，之后推送就不需要添加
+         告诉远程仓库，创建一个master分支
+      origin:关联本地与远程仓库时的别名，指代远程仓库的地址
+    5.删除远程仓库
+      settings >> Danger Zone >>
+    6.删除本地仓库与远程仓库之间的关联
+      git remote remove origin
+    
